@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arian Malayery | AI Engineering, Business Strategy & Performance</title>
+  
+  <!-- CUSTOM FAVICON -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+
+  <style>
+    :root {
+      --bg: #0b1120;
+      --surface: #1e293b;
+      --surface-light: #334155;
+      --border: #334155;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --success: #4ade80;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 2.5rem 0;
+    }
+
+    /* HEADER WITH PROFILE IMAGE (5240.jpg) */
+    header {
+      background: linear-gradient(135deg, var(--surface), #0f172a);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.25rem;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .profile-photo-container {
+      flex: 0 0 160px;
+      width: 160px;
+      height: 160px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid var(--accent);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      background: #0f172a;
+    }
+
+    .profile-photo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .header-info {
+      flex: 1 1 450px;
+    }
+
+    .header-info h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .header-info h2 {
+      font-size: 1.15rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 0.35rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .header-summary {
+      color: var(--text-muted);
+      font-size: 0.94rem;
+      line-height: 1.5;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .contact-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.88rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.85rem;
+      background: var(--surface-light);
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+
+    .contact-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    h3.section-title {
+      font-size: 1.25rem;
+      color: #fff;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    p.intro-para {
+      color: #cbd5e1;
+      margin-bottom: 1.1rem;
+      font-size: 0.96rem;
+      text-align: justify;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .skill-card {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+
+    .skill-card h4 {
+      color: var(--accent);
+      font-size: 0.95rem;
+      margin-bottom: 0.65rem;
+      font-weight: 700;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .tag {
+      background: var(--surface-light);
+      color: #e2e8f0;
+      font-size: 0.78rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Timeline */
+    .timeline-item {
+      border-left: 2px solid var(--border);
+      padding-left: 1.25rem;
+      margin-left: 0.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -6px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .timeline-item h4 {
+      font-size: 1.05rem;
+      color: #fff;
+    }
+
+    .timeline-item .timeline-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+      font-weight: 500;
+    }
+
+    .timeline-item p {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+    }
+
+    /* RESIZED DOCUMENT SHOWCASE CARDS (UNDER WORDING) */
+    .section-attachment-card {
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .doc-card-single {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 520px;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .doc-card-single:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .doc-card-dual-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .doc-card {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .doc-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+
+    .doc-img-wrapper {
+      height: 220px;
+      background: #1e293b;
+      overflow: hidden;
+    }
+
+    .doc-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .doc-card-body {
+      padding: 0.85rem 1rem;
+    }
+
+    .doc-card-body h5 {
+      font-size: 0.92rem;
+      color: #ffffff;
+      margin-bottom: 0.25rem;
+    }
+
+    .doc-card-body p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* SCROLLING GALLERY WITH HOVER-EXPAND & CLICK-TO-NEW-WINDOW */
+    .gallery-carousel-container {
+      position: relative;
+      margin-top: 1rem;
+    }
+
+    .gallery-scroll-track {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 1.25rem 0.5rem 1.5rem 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) var(--surface-light);
+    }
+
+    .gallery-scroll-track::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .gallery-scroll-track::-webkit-scrollbar-track {
+      background: var(--surface-light);
+      border-radius: 4px;
+    }
+
+    .gallery-scroll-track::-webkit-scrollbar-thumb {
+      background-color: var(--accent);
+      border-radius: 4px;
+    }
+
+    .scroll-item {
+      flex: 0 0 240px;
+      height: 280px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #0f172a;
+      scroll-snap-align: start;
+      position: relative;
+      transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .scroll-item:hover {
+      transform: scale(1.15) translateY(-6px);
+      z-index: 15;
+      border-color: var(--accent);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.75), 0 0 16px rgba(56, 189, 248, 0.4);
+    }
+
+    .scroll-item a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+    }
+
+    .scroll-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* YOUTUBE EMBED CONTAINER */
+    .video-responsive {
+      overflow: hidden;
+      padding-bottom: 56.25%;
+      position: relative;
+      height: 0;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #0f172a;
+      margin-top: 0.75rem;
+    }
+
+    .video-responsive iframe {
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      border: 0;
+    }
+
+    .audio-player-card {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .player-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .now-playing {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .now-playing span:first-child {
+      font-size: 0.75rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .now-playing span:last-child {
+      font-size: 1rem;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .playlist-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .playlist-list li {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      padding: 0.5rem 0.75rem;
+      background: var(--surface);
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--text-muted);
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .playlist-list li.active, .playlist-list li:hover {
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .direct-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      padding: 0.35rem 0.75rem;
+      background: var(--surface-light);
+      color: var(--accent);
+      text-decoration: none;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+
+    .direct-link-btn:hover {
+      background: var(--accent);
+      color: #0f172a;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- HEADER -->
+    <header>
+      <div class="profile-photo-container">
+        <img src="images/5240.jpg" alt="Arian Malayery Portrait">
+      </div>
+      <div class="header-info">
+        <h1>Arian Malayery</h1>
+        <h2>AI Engineering Candidate, Business Strategist & Athletic Innovator</h2>
+        <p class="header-summary">
+          Synthesizing enterprise artificial intelligence architectures, quantitative commercial market research, and high-performance physical development to build scalable platforms that elevate the human experience.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:arian.malayery@gmail.com">✉ arian.malayery@gmail.com</a>
+          <a href="https://www.linkedin.com/in/arian-malayery/" target="_blank">in LinkedIn</a>
+          <a href="https://github.com/arianmalayery-studio" target="_blank">⌥ GitHub</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- PROFESSIONAL INTRO -->
+    <section>
+      <h3 class="section-title">Professional Profile</h3>
+      <p class="intro-para">
+        I am a health, fitness, and operations specialist with a cross-functional foundation spanning kinesiology, corporate business management, and computational intelligence. My background is built upon operational engagement across high-impact domains: conducting targeted market research and generating investment transaction leads as a commercial real estate marketing specialist, executing technical outreach and digital presence optimization in law-firm SEO, and leading high-tempo customer workflows in food hospitality and urban transportation. Across each arena, I have observed that long-term value creation hinges on a singular truth: whether nourishing the physical body, negotiating property acquisitions, or structuring software systems, meaningful results arise from establishing genuine trust, understanding foundational human needs, and executing clean, scalable processes.
+      </p>
+      <p class="intro-para">
+        My motivations are driven by a continuous pursuit of cognitive optimization, lifelong learning, and applied innovation. I maintain an active intellectual curiosity across micro- and macroeconomics, organizational psychology, metaphysics, astrophysics, and architectural systems design. Acoustic expression and music production serve as my rhythm across deep problem-solving tasks, ranging from the structured cadence of high-energy minimal techno to the authentic storytelling of classic country songwriting. Parallel to my intellectual and professional commitments, I demand athletic excellence from myself through structured resistance training, sprint biomechanics, and compound power development, pursuing lifetime performance standards on the court and track.
+      </p>
+      <p class="intro-para">
+        My ultimate objective is to design, engineer, and deploy a comprehensive portfolio of intelligent web platforms, automated agent architectures, and biomechanical products that eliminate friction and elevate everyday productivity. Enrolled in the University of Chicago and HyperionDev AI Engineering bootcamp, I am expanding my quantitative business management foundation with production-grade neural networks, natural language processing pipelines, and agentic workflows. My focus is on orchestrating artificial intelligence models that transform complex real-world data into seamless, accessible, and high-leverage software solutions.
+      </p>
+    </section>
+
+    <!-- SKILLS & COMPETENCIES -->
+    <section>
+      <h3 class="section-title">Skills & Competencies</h3>
+      
+      <div class="skills-grid">
+        
+        <!-- AI & Software Engineering -->
+        <div class="skill-card">
+          <h4>AI & Software Engineering (May 2027 Stack)</h4>
+          <div class="tag-list">
+            <span class="tag">Python (NumPy, Pandas, Scikit-Learn)</span>
+            <span class="tag">Machine Learning & Deep Learning</span>
+            <span class="tag">Neural Networks & PyTorch</span>
+            <span class="tag">NLP & Large Language Models</span>
+            <span class="tag">RAG Architecture & Embeddings</span>
+            <span class="tag">Model Deployment & MLOps</span>
+            <span class="tag">Django Web Framework</span>
+            <span class="tag">RESTful APIs & Microservices</span>
+            <span class="tag">SQLite & MySQL Relational DBs</span>
+            <span class="tag">Git & GitHub Version Control</span>
+            <span class="tag">AI Ethics & Governance</span>
+          </div>
+        </div>
+
+        <!-- BSM Core Coursework -->
+        <div class="skill-card">
+          <h4>Business Management Core (BSM Curriculum)</h4>
+          <div class="tag-list">
+            <span class="tag">Strategic Management (MGT/498)</span>
+            <span class="tag">Organizational Behavior (MGT/312T)</span>
+            <span class="tag">Innovative Leadership (LDR/300T)</span>
+            <span class="tag">Change Management & Analytics (MGT/362T)</span>
+            <span class="tag">Strategic Operations & Logistics (OPS/330T)</span>
+            <span class="tag">Ethical & Legal Business Topics (ETH/321T)</span>
+            <span class="tag">Organizational Project Management (PM/350T)</span>
+            <span class="tag">Finance for Business (FIN/370T)</span>
+            <span class="tag">Principles of Macroeconomics (ECO/372T)</span>
+            <span class="tag">Marketing & Market Research (MKT/421T)</span>
+          </div>
+        </div>
+
+        <!-- Commercial & Operational Strategy -->
+        <div class="skill-card">
+          <h4>Commercial Strategy & Operations</h4>
+          <div class="tag-list">
+            <span class="tag">Commercial Real Estate Research</span>
+            <span class="tag">Property Owner Mapping & Lead Sourcing</span>
+            <span class="tag">Direct Sales Outreach & Phone Prospecting</span>
+            <span class="tag">Customer Relations & Negotiation</span>
+            <span class="tag">Financial & Portfolio Literacy</span>
+            <span class="tag">Product Lifecycle Design</span>
+            <span class="tag">Cross-Functional Team Collaboration</span>
+            <span class="tag">High-Volume Routing & Dispatch</span>
+          </div>
+        </div>
+
+        <!-- Athletic Sciences & Audio Production -->
+        <div class="skill-card">
+          <h4>Athletic Sciences & Audio Production</h4>
+          <div class="tag-list">
+            <span class="tag">Athletic Development & Biomechanics</span>
+            <span class="tag">Sports & Performance Nutrition</span>
+            <span class="tag">Strength & Conditioning Programming</span>
+            <span class="tag">Compound Lift Mastery</span>
+            <span class="tag">Sprint & Plyometric Conditioning</span>
+            <span class="tag">Digital Music Production</span>
+            <span class="tag">Sound Design & Track Sequencing</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Resized Competency Image Placed Under The Wording -->
+      <div class="section-attachment-card">
+        <div class="doc-card doc-card-single">
+          <div class="doc-img-wrapper">
+            <a href="images/1789021391773.png" target="_blank" rel="noopener noreferrer" title="Click to view full image in new tab">
+              <img src="images/1789021391773.png" alt="Strategic Competency & Analytical Record" loading="lazy">
+            </a>
+          </div>
+          <div class="doc-card-body">
+            <h5>Competency & Analytical Architecture</h5>
+            <p>Operational data and analytical focus overview (Click to open full size in new tab).</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- EDUCATION -->
+    <section>
+      <h3 class="section-title">Education & Credentials</h3>
+      
+      <div class="timeline-item">
+        <h4>AI Engineering Bootcamp (Credential Path)</h4>
+        <div class="timeline-meta">University of Chicago & HyperionDev | Expected Completion: May 2027</div>
+        <p>Advanced engineering curriculum focused on supervised and unsupervised machine learning, deep learning, computer vision, natural language processing, retrieval-augmented generation (RAG), and production deployment of autonomous AI agents.</p>
+      </div>
+
+      <div class="timeline-item">
+        <h4>Bachelor of Science in Business Management (BSM)</h4>
+        <div class="timeline-meta">University of Phoenix | Conferred October 2025</div>
+        <p>Completed 120-credit degree program grounded in upper-division coursework including Strategic Management (MGT/498), Strategic Operations & Logistics (OPS/330T), Finance for Business (FIN/370T), Change Management (MGT/362T), Project Management (PM/350T), and Organizational Behavior (MGT/312T).</p>
+      </div>
+
+      <div class="timeline-item">
+        <h4>Undergraduate Studies in Kinesiology</h4>
+        <div class="timeline-meta">Georgia Southern University | Statesboro, GA</div>
+        <p>Comprehensive foundational coursework in human physiology, kinesiology, exercise biomechanics, and athletic development, paired with a minor in Business Management focused on Entrepreneurship.</p>
+      </div>
+
+      <!-- Resized Educational Record Images Placed Under The Wording -->
+      <div class="doc-card-dual-grid">
+        <div class="doc-card">
+          <div class="doc-img-wrapper">
+            <a href="images/1789021516304.png" target="_blank" rel="noopener noreferrer" title="Click to view full image in new tab">
+              <img src="images/1789021516304.png" alt="Academic Progress Record" loading="lazy">
+            </a>
+          </div>
+          <div class="doc-card-body">
+            <h5>BSM Academic Progress Record</h5>
+            <p>University of Phoenix degree milestone verification (Click to open in new tab).</p>
+          </div>
+        </div>
+
+        <div class="doc-card">
+          <div class="doc-img-wrapper">
+            <a href="images/1789021512115.png" target="_blank" rel="noopener noreferrer" title="Click to view full image in new tab">
+              <img src="images/1789021512115.png" alt="Core Curriculum Audit" loading="lazy">
+            </a>
+          </div>
+          <div class="doc-card-body">
+            <h5>Core Curriculum Verification</h5>
+            <p>Upper-division management coursework audit (Click to open in new tab).</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- WORK EXPERIENCE -->
+    <section>
+      <h3 class="section-title">Professional Experience</h3>
+      
+      <div class="timeline-item">
+        <h4>Commercial Real Estate Marketing Specialist</h4>
+        <div class="timeline-meta">Buckhead Brokers Commercial Realtors</div>
+        <p>Conducted extensive market research across property asset classes, analyzed regional commercial property owner records, and generated qualified transaction and acquisition leads.</p>
+      </div>
+
+      <div class="timeline-item">
+        <h4>SEO Link Building Specialist</h4>
+        <div class="timeline-meta">Second Eclipse</div>
+        <p>Executed digital outreach campaigns, competitor backlink analyses, and content placement strategies to systematically improve search authority and ranking for law firms.</p>
+      </div>
+
+      <div class="timeline-item">
+        <h4>Assistant Manager</h4>
+        <div class="timeline-meta">Jersey Mike's</div>
+        <p>Directed daily store workflows, team scheduling, inventory management, customer service execution, and food safety compliance in a high-volume restaurant environment.</p>
+      </div>
+
+      <div class="timeline-item">
+        <h4>Personal Fitness Trainer</h4>
+        <div class="timeline-meta">LA Fitness</div>
+        <p>Guided clients through personalized resistance training, corrective biomechanics, compound lifts, and nutritional frameworks tailored to measurable physical performance goals.</p>
+      </div>
+
+      <div class="timeline-item">
+        <h4>Mobility & Logistics Specialist</h4>
+        <div class="timeline-meta">Domino's, Pizza Hut, DoorDash, Uber, Lyft</div>
+        <p>Executed time-sensitive passenger and delivery logistics across dense metropolitan corridors, maintaining rigorous punctuality, navigational safety, and positive customer engagement.</p>
+      </div>
+    </section>
+
+    <!-- PERSPECTIVE & HIGHLIGHTS -->
+    <section>
+      <h3 class="section-title">Perspective & Highlights</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.75rem;">
+        A visual chronicle of athletic discipline, field training, professional endeavors, and daily focus. Hover over any frame to expand it, or click to launch the full-resolution image in a new tab.
+      </p>
+      
+      <div class="gallery-carousel-container">
+        <div class="gallery-scroll-track">
+          <div class="scroll-item"><a href="images/1788689389547.jpg" target="_blank" rel="noopener noreferrer"><img src="images/1788689389547.jpg" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021096348.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021096348.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021099884.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021099884.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021107092.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021107092.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021154644.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021154644.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021162976.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021162976.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021217186.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021217186.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021245305.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021245305.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021277481.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021277481.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021298151.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021298151.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021306250.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021306250.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021313450.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021313450.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021318698.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021318698.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021337235.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021337235.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021368843.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021368843.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021372345.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021372345.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021376040.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021376040.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021384474.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021384474.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021388552.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021388552.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021391773.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021391773.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021400158.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021400158.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021404285.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021404285.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021415562.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021415562.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021446623.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021446623.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021459193.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021459193.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021471414.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021471414.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021483309.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021483309.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021505735.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021505735.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021509855.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021509855.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021512115.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021512115.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021516304.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021516304.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021521800.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021521800.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021580535.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021580535.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021596917.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021596917.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021635071.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021635071.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021639684.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021639684.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021648549.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021648549.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021657798.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021657798.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021661127.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021661127.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/1789021763864.png" target="_blank" rel="noopener noreferrer"><img src="images/1789021763864.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/20260401_112058.jpg" target="_blank" rel="noopener noreferrer"><img src="images/20260401_112058.jpg" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/20260821_195545.jpg" target="_blank" rel="noopener noreferrer"><img src="images/20260821_195545.jpg" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/20260925_200537.jpg" target="_blank" rel="noopener noreferrer"><img src="images/20260925_200537.jpg" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/20261105_144403.jpg" target="_blank" rel="noopener noreferrer"><img src="images/20261105_144403.jpg" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/5240.jpg" target="_blank" rel="noopener noreferrer"><img src="images/5240.jpg" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/5463.png" target="_blank" rel="noopener noreferrer"><img src="images/5463.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/5526.png" target="_blank" rel="noopener noreferrer"><img src="images/5526.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/5534.png" target="_blank" rel="noopener noreferrer"><img src="images/5534.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/5536.png" target="_blank" rel="noopener noreferrer"><img src="images/5536.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/5561.png" target="_blank" rel="noopener noreferrer"><img src="images/5561.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/5565.png" target="_blank" rel="noopener noreferrer"><img src="images/5565.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/5567.png" target="_blank" rel="noopener noreferrer"><img src="images/5567.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/5568.png" target="_blank" rel="noopener noreferrer"><img src="images/5568.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/5569.png" target="_blank" rel="noopener noreferrer"><img src="images/5569.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/5575.png" target="_blank" rel="noopener noreferrer"><img src="images/5575.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/5611.png" target="_blank" rel="noopener noreferrer"><img src="images/5611.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/5612.png" target="_blank" rel="noopener noreferrer"><img src="images/5612.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/5623.png" target="_blank" rel="noopener noreferrer"><img src="images/5623.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/5626.png" target="_blank" rel="noopener noreferrer"><img src="images/5626.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/5627.png" target="_blank" rel="noopener noreferrer"><img src="images/5627.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/5628.png" target="_blank" rel="noopener noreferrer"><img src="images/5628.png" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/7871.jpg" target="_blank" rel="noopener noreferrer"><img src="images/7871.jpg" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/7873.jpg" target="_blank" rel="noopener noreferrer"><img src="images/7873.jpg" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/FB_IMG_1739348768423.jpg" target="_blank" rel="noopener noreferrer"><img src="images/FB_IMG_1739348768423.jpg" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/FB_IMG_1739348784877.jpg" target="_blank" rel="noopener noreferrer"><img src="images/FB_IMG_1739348784877.jpg" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/FB_IMG_1789036600802.jpg" target="_blank" rel="noopener noreferrer"><img src="images/FB_IMG_1789036600802.jpg" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/FB_IMG_1789036857157.jpg" target="_blank" rel="noopener noreferrer"><img src="images/FB_IMG_1789036857157.jpg" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/IMG_0482.PNG.jpg" target="_blank" rel="noopener noreferrer"><img src="images/IMG_0482.PNG.jpg" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/IMG_20260825_103239_682.jpg" target="_blank" rel="noopener noreferrer"><img src="images/IMG_20260825_103239_682.jpg" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/Screenshot_20251201_130224_Gallery.jpg" target="_blank" rel="noopener noreferrer"><img src="images/Screenshot_20251201_130224_Gallery.jpg" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/Screenshot_20260831_191302_Photos.jpg" target="_blank" rel="noopener noreferrer"><img src="images/Screenshot_20260831_191302_Photos.jpg" alt="Highlight" loading="lazy"></a></div>
+          <div class="scroll-item"><a href="images/Screenshot_20261007_150021_Gallery.jpg" target="_blank" rel="noopener noreferrer"><img src="images/Screenshot_20261007_150021_Gallery.jpg" alt="Highlight" loading="lazy"></a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOUNDTRACK & INSPIRATION (YOUTUBE STREAM) -->
+    <section>
+      <h3 class="section-title">Soundtrack & Inspiration</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.75rem;">
+        Official high-fidelity stream powered by YouTube. Play the embedded playlist below or click any track to listen.
+      </p>
+      
+      <!-- Embedded Responsive YouTube Player -->
+      <div class="video-responsive">
+        <iframe 
+          id="youtubeIframe" 
+          src="https://www.youtube-nocookie.com/embed/videoseries?list=PLC0FYjh6duH8&rel=0&modestbranding=1" 
+          title="YouTube playlist player" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="audio-player-card">
+        <div class="player-header">
+          <div class="now-playing">
+            <span>Selected Track</span>
+            <span id="currentTrackTitle">1. "Python" — Boris Brejcha</span>
+          </div>
+          <a class="direct-link-btn" id="ytExternalLink" href="https://www.youtube.com/playlist?list=PLC0FYjh6duH8" target="_blank" rel="noopener noreferrer">
+            ▶ Open Playlist on YouTube
+          </a>
+        </div>
+
+        <ul class="playlist-list" id="trackIndexList">
+          <li class="active" data-index="0" data-name="'Python' — Boris Brejcha" data-watch="https://www.youtube.com/watch?v=F_Yv2nZk6U0">
+            <span>1. Python</span><span>Boris Brejcha (High-Tech Minimal)</span>
+          </li>
+          <li data-index="1" data-name="'Wild As Her' — Morgan Wallen" data-watch="https://www.youtube.com/watch?v=V9QJ-B1y66w">
+            <span>2. Wild As Her</span><span>Morgan Wallen</span>
+          </li>
+          <li data-index="2" data-name="'A Country Song Came On' — Luke Bryan" data-watch="https://www.youtube.com/watch?v=zJg10n9Rz8k">
+            <span>3. A Country Song Came On</span><span>Luke Bryan</span>
+          </li>
+          <li data-index="3" data-name="'You Make It Easy' — Jason Aldean" data-watch="https://www.youtube.com/watch?v=H77sQ6YVlI0">
+            <span>4. You Make It Easy</span><span>Jason Aldean</span>
+          </li>
+          <li data-index="4" data-name="'It Just Comes Natural' — George Strait" data-watch="https://www.youtube.com/watch?v=kC7Xg3C3Q8Q">
+            <span>5. It Just Comes Natural</span><span>George Strait</span>
+          </li>
+          <li data-index="5" data-name="'Boot Scootin\' Boogie' — Brooks & Dunn" data-watch="https://www.youtube.com/watch?v=d05tQrhNMkA">
+            <span>6. Boot Scootin' Boogie</span><span>Brooks & Dunn</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      &copy; 2026 Arian Malayery. Hosted via GitHub Pages for HyperionDev Practical Task 2[cite: 5, 6].
+    </footer>
+
+  </div>
+
+  <script>
+    // Playlist Track Selector Sync with YouTube Embed
+    const playlistItems = document.querySelectorAll('#trackIndexList li');
+    const trackTitleDisplay = document.getElementById('currentTrackTitle');
+    const youtubeIframe = document.getElementById('youtubeIframe');
+    const externalLink = document.getElementById('ytExternalLink');
+    const basePlaylistUrl = "https://www.youtube-nocookie.com/embed/videoseries?list=PLC0FYjh6duH8&rel=0&modestbranding=1";
+
+    playlistItems.forEach(item => {
+      item.addEventListener('click', () => {
+        playlistItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        const trackName = item.getAttribute('data-name');
+        const trackIndex = item.getAttribute('data-index');
+        const watchUrl = item.getAttribute('data-watch');
+        
+        trackTitleDisplay.textContent = `${parseInt(trackIndex) + 1}. ${trackName}`;
+        if (watchUrl) {
+          externalLink.href = watchUrl;
+          externalLink.textContent = "▶ Listen to " + trackName.split('—')[0].replace(/['"]/g, '').trim();
+        }
+        
+        youtubeIframe.src = `${basePlaylistUrl}&index=${trackIndex}&autoplay=1`;
+      });
+    });
+  </script>
+</body>
+</html>
