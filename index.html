@@ -477,8 +477,8 @@
       border-top: 1px solid var(--border);
     }
 
-    /* ===== LIGHTBOX ===== */
-.lightbox {
+    /* ==== LIGHTBOX ==== */
+    .lightbox {
   display: none;
   position: fixed;
   inset: 0;
@@ -487,7 +487,6 @@
   justify-content: center;
   align-items: center;
   cursor: zoom-out;
-  animation: fadeIn 0.2s ease;
 }
 
 .lightbox.active {
@@ -500,8 +499,6 @@
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-  cursor: default;
-  animation: scaleIn 0.25s ease;
 }
 
 .lightbox-close {
@@ -509,66 +506,22 @@
   top: 1.25rem;
   right: 1.5rem;
   color: #fff;
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   font-weight: 300;
   cursor: pointer;
   line-height: 1;
-  opacity: 0.8;
-  transition: opacity 0.2s;
-  user-select: none;
+  opacity: 0.85;
+  z-index: 10000;
 }
 
 .lightbox-close:hover {
   opacity: 1;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes scaleIn {
-  from { transform: scale(0.92); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
+    
   </style>
 </head>
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <span class="lightbox-close" id="lightbox-close">&times;</span>
-  <img src="" alt="Full size" id="lightbox-img">
-</div>
-<script>
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const closeBtn = document.getElementById('lightbox-close');
 
-  // Open lightbox when any gallery image is clicked
-  document.querySelectorAll('.scroll-item img, .doc-img-wrapper img, .profile-photo-container img').forEach(img => {
-    img.style.cursor = 'zoom-in';
-    img.addEventListener('click', () => {
-      lightboxImg.src = img.src;
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden'; // prevent background scroll
-    });
-  });
-
-  // Close lightbox
-  function closeLightbox() {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  closeBtn.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox(); // click outside image
-  });
-
-  // Close with Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
-  });
-</script>
 <body>
 
   <div class="container">
@@ -922,6 +875,11 @@
     </footer>
 
   </div>
+  <!-- ===== LIGHTBOX (must be inside body) ===== -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightbox-close">&times;</span>
+    <img src="" alt="Full size" id="lightbox-img">
+  </div>
 
   <script>
     // Playlist Track Selector Sync with YouTube Embed
@@ -946,7 +904,36 @@
         }
         
         youtubeIframe.src = `${basePlaylistUrl}&index=${trackIndex}&autoplay=1`;
+        });
       });
+
+      // ===== LIGHTBOX =====
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('lightbox-close');
+
+    document.querySelectorAll('.scroll-item img').forEach(img => {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        lightboxImg.src = img.src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
     });
   </script>
 </body>
