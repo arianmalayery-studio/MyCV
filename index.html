@@ -478,6 +478,55 @@
       border-top: 1px solid var(--border);
     }
     
+
+    /* ===== TWO-COLUMN LAYOUT WITH PLAYER SIDEBAR ===== */
+    .container { max-width: 1320px; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .main-col { min-width: 0; }
+
+    .sidebar {
+      position: sticky;
+      top: 1rem;
+      max-height: calc(100vh - 2rem);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) var(--surface-light);
+    }
+
+    .sidebar section {
+      padding: 1.25rem;
+      margin-bottom: 0;
+    }
+
+    .sidebar .audio-player-card { padding: 1rem; }
+
+    .sidebar .player-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .sidebar .playlist-list li {
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .sidebar .playlist-list li span:last-child {
+      font-size: 0.75rem;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 1000px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; max-height: none; overflow: visible; }
+    }
+
     /* ===== LIGHTBOX ==== */
     .lightbox {
         display: none;
@@ -544,6 +593,9 @@
         </div>
       </div>
     </header>
+
+    <div class="layout">
+    <main class="main-col">
 
     <!-- PROFESSIONAL INTRO -->
     <section>
@@ -819,6 +871,10 @@
       </div><!-- /.gallery-carousel-container -->
     </section>
 
+    </main>
+
+    <!-- SIDEBAR: YOUTUBE PLAYER -->
+    <aside class="sidebar" aria-label="Soundtrack player">
     <!-- SOUNDTRACK & INSPIRATION (YOUTUBE STREAM) -->
     <section>
       <h3 class="section-title">Soundtrack &amp; Inspiration</h3>
@@ -870,6 +926,8 @@
         </ul>
       </div>
     </section>
+    </aside>
+    </div><!-- /.layout -->
 
     <footer>
       &copy; 2026 Arian Malayery. Hosted via GitHub Pages.
